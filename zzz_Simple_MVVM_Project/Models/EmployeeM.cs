@@ -8,7 +8,7 @@ using System.ComponentModel; // INotifyPropertyChanged
 
 namespace zzz_Simple_MVVM_Project.Models
 {
-    public class Employee : INotifyPropertyChanged
+    public class EmployeeM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

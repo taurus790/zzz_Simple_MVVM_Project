@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:zzz_Simple_MVVM_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
+        Title="MainWindow" 
+        Height="450" Width="400"
+        SizeToContent="WidthAndHeight"
+        xmlns:vw="clr-namespace:zzz_Simple_MVVM_Project.Views">
     <Grid>
-        
+        <vw:EmployeeV/>
     </Grid>
 </Window>

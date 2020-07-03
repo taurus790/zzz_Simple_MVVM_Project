@@ -8,22 +8,22 @@ namespace zzz_Simple_MVVM_Project.Models
 {
     class EmployeeService
     {
-        private static List<Employee> Employees;
+        private static List<EmployeeM> Employees;
 
         public EmployeeService()
         {
-            Employees = new List<Employee>()
+            Employees = new List<EmployeeM>()
             {
-                new Employee { Id=101, Name="Ali", Age=21}
+                new EmployeeM { Id=101, Name="Ali", Age=21}
             };
         }
 
-        public List<Employee> GetAll()
+        public List<EmployeeM> GetAll()
         {
             return Employees;
         }
 
-        public bool Add(Employee freshEmployee)
+        public bool Add(EmployeeM freshEmployee)
         {
             // Age must be between 18 and 65. 
             if (freshEmployee.Age < 18 || freshEmployee.Age > 65)
@@ -35,7 +35,7 @@ namespace zzz_Simple_MVVM_Project.Models
             return true;
         }
 
-        public bool Update(Employee updEmployee)
+        public bool Update(EmployeeM updEmployee)
         {
             bool isUpdated = false;
 
@@ -72,7 +72,7 @@ namespace zzz_Simple_MVVM_Project.Models
             return isDeleted;
         }
     
-        public Employee Search(int id)
+        public EmployeeM Search(int id)
         {
             return Employees.FirstOrDefault(e => e.Id == id);
         }
