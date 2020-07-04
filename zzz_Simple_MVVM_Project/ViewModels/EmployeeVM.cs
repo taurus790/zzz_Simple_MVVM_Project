@@ -107,9 +107,13 @@ namespace zzz_Simple_MVVM_Project.ViewModels
                 LoadData();
 
                 if (IsAdded)
+                {
                     Message = "Employee added.";
+                }
                 else
+                {
                     Message = "Add operation failed.";
+                }
             }
             catch (Exception ex)
             {
@@ -128,10 +132,13 @@ namespace zzz_Simple_MVVM_Project.ViewModels
                 {
                     SelectedEmployee.Name = foundEmployee.Name;
                     SelectedEmployee.Age = foundEmployee.Age;
+                    Message = "Employee found.";
                 }
                 else
                 {
-                    Message = "Employee not found";
+                    SelectedEmployee.Name = null;
+                    SelectedEmployee.Age = 0;
+                    Message = "Employee not found.";
                 }
 
             }
