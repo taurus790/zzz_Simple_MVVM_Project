@@ -28,10 +28,12 @@ namespace zzz_Simple_MVVM_Project.Models
             // Age must be between 18 and 65. 
             if (freshEmployee.Age < 18 || freshEmployee.Age > 65)
             {
-                throw new ArgumentException("invalid age. Must be 18 < x < 65");
+                throw new ArgumentException("Invalid age. Must be between 18 and 65.");
             }
 
-            MyEmployees.Add(freshEmployee);
+            // Adds a new employee with the same details.
+            MyEmployees.Add(new EmployeeM() { Id = freshEmployee.Id, Name = freshEmployee.Name, Age = freshEmployee.Age });
+
             return true;
         }
 
@@ -71,7 +73,7 @@ namespace zzz_Simple_MVVM_Project.Models
 
             return isDeleted;
         }
-    
+
         public EmployeeM Search(int id)
         {
             return MyEmployees.FirstOrDefault(e => e.Id == id);

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 using System.ComponentModel; // INotifyPropertyChanged
 using System.Collections.ObjectModel; // Observable Collections.
-using zzz_Simple_MVVM_Project.Models; 
+using zzz_Simple_MVVM_Project.Models; // My models.
+using zzz_Simple_MVVM_Project.Commands; // My Commands. 
 
 
 namespace zzz_Simple_MVVM_Project.ViewModels
@@ -40,6 +41,22 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             set { selectedEmployee = value; OnPropertyChanged("SelectedEmployee"); }
         }
 
+        // Command for adding a new employee.
+        private RelayCommand addCommand;
+        public RelayCommand AddCommand
+        {
+            get { return addCommand; }
+            // set { saveCommand = value; } // There is no need in setter in commands. 
+        }
+
+        // Message to show to user.
+        private string message;
+        public string Message
+        {
+            get { return message; }
+            set { message = value; OnPropertyChanged("Message"); }
+        }
+
         #endregion
 
         #region Constructor. 
@@ -50,6 +67,8 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             LoadData();
 
             SelectedEmployee = new EmployeeM();
+
+            addCommand = new RelayCommand(Add);
         }
         #endregion 
 
@@ -67,7 +86,25 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             MyEmployees = new ObservableCollection<EmployeeM>(myEmployeeService.GetAll());  
         }
         #endregion
-    
-        
+
+        #region Add operation. 
+        public void Add()
+        {
+            try
+            {
+                var IsAdded = myEmployeeService.Add(SelectedEmployee);
+                LoadData();
+
+                if (IsAdded)
+                    Message = "Employee added.";
+                else
+                    Message = "Add operation failed.";
+            }
+            catch (Exception ex)
+            {
+                Message= ex.Message;
+            }
+        }
+        #endregion
     }
 }

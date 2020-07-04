@@ -55,7 +55,7 @@ namespace zzz_Simple_MVVM_Project.Models
             Id = 0;
             Name = "John Smith";
             Age = 21;
-        } 
+        }
         #endregion
     }
 }

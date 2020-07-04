@@ -62,7 +62,8 @@
 
             <Button Name="Add" 
                     Content="Add" 
-                    Margin="5,8,6,8" Padding="3"/>
+                    Margin="5,8,6,8" Padding="3"
+                    Command="{Binding Path=AddCommand}"/>
 
             <Button Name="Search" 
                     Content="Search" 
@@ -80,7 +81,8 @@
 
         <TextBlock Name="Message" 
                    Grid.Row="5" Grid.Column="1" 
-                   Margin="5,8,6,8" Padding="3"/>
+                   Margin="5,8,6,8" Padding="3"
+                   Text="{Binding Path=Message}"/>
 
         <DataGrid Name="Employees"
                   AutoGenerateColumns="False" 
