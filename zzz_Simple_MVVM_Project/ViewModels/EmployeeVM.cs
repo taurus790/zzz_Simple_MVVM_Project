@@ -33,6 +33,14 @@ namespace zzz_Simple_MVVM_Project.ViewModels
         // Employee Service of this VM. 
         EmployeeService myEmployeeService;
 
+        // List of employees. 
+        private ObservableCollection<EmployeeM> myEmployees;
+        public ObservableCollection<EmployeeM> MyEmployees
+        {
+            get { return myEmployees; }
+            set { myEmployees = value; OnPropertyChanged("MyEmployees"); }
+        }
+
         // Selected employee. 
         private EmployeeM selectedEmployee;
         public EmployeeM SelectedEmployee
@@ -48,6 +56,16 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             get { return addCommand; }
             // set { saveCommand = value; } // There is no need in setter in commands. 
         }
+
+        // Command for searching an employee by id. 
+        private RelayCommand searchCommand;
+
+        public RelayCommand SearchCommand
+        {
+            get { return searchCommand; }
+            // set { searchCommand = value; } // There is no need in setter in commands. 
+        }
+
 
         // Message to show to user.
         private string message;
@@ -69,18 +87,11 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             SelectedEmployee = new EmployeeM();
 
             addCommand = new RelayCommand(Add);
+            searchCommand = new RelayCommand(Search);
         }
         #endregion 
 
         #region Display operation.
-        // List of employees. 
-        private ObservableCollection<EmployeeM> myEmployees;
-        public ObservableCollection<EmployeeM>  MyEmployees
-        {
-            get { return myEmployees; }
-            set { myEmployees = value; OnPropertyChanged("MyEmployees"); }
-        }
-
         private void LoadData()
         {
             MyEmployees = new ObservableCollection<EmployeeM>(myEmployeeService.GetAll());  
@@ -103,6 +114,30 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             catch (Exception ex)
             {
                 Message= ex.Message;
+            }
+        }
+        #endregion
+
+        #region Search operation.
+        public void Search ()
+        {
+            try
+            {
+                var foundEmployee = myEmployeeService.Search(SelectedEmployee.Id);
+                if (foundEmployee != null)
+                {
+                    SelectedEmployee.Name = foundEmployee.Name;
+                    SelectedEmployee.Age = foundEmployee.Age;
+                }
+                else
+                {
+                    Message = "Employee not found";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
             }
         }
         #endregion

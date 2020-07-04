@@ -50,12 +50,14 @@ namespace zzz_Simple_MVVM_Project.Models
 
         #region Constructor. 
         // Constructor. 
+        /*
         public EmployeeM()
         {
             Id = 0;
             Name = "John Smith";
             Age = 21;
         }
+        */
         #endregion
     }
 }

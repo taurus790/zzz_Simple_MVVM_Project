@@ -36,6 +36,10 @@ namespace zzz_Simple_MVVM_Project.Models
 
             return true;
         }
+        public EmployeeM Search(int id)
+        {
+            return MyEmployees.FirstOrDefault(e => e.Id == id);
+        }
 
         public bool Update(EmployeeM updEmployee)
         {
@@ -72,11 +76,6 @@ namespace zzz_Simple_MVVM_Project.Models
             }
 
             return isDeleted;
-        }
-
-        public EmployeeM Search(int id)
-        {
-            return MyEmployees.FirstOrDefault(e => e.Id == id);
         }
     }
 }

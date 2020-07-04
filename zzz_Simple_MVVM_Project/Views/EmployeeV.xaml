@@ -67,7 +67,8 @@
 
             <Button Name="Search" 
                     Content="Search" 
-                    Margin="5,8,6,8" Padding="3"/>
+                    Margin="5,8,6,8" Padding="3"
+                    Command="{Binding Path=SearchCommand}"/>
 
             <Button Name="Update" 
                     Content="Update" 
