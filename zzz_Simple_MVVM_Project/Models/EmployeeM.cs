@@ -10,8 +10,11 @@ namespace zzz_Simple_MVVM_Project.Models
 {
     public class EmployeeM : INotifyPropertyChanged
     {
+        // Notifies everything that is bounded to a property. 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method will be called from setters of properties, 
+        // and calls the PropertyChanged event everytime any property has been changed.
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

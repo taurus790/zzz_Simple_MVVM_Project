@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using zzz_Simple_MVVM_Project.ViewModels; // View models. 
+
 namespace zzz_Simple_MVVM_Project
 {
     /// <summary>
@@ -20,9 +22,12 @@ namespace zzz_Simple_MVVM_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        EmployeeVM MyEmployeeVM;
         public MainWindow()
         {
             InitializeComponent();
+            MyEmployeeVM = new EmployeeVM();
+            this.DataContext = MyEmployeeVM;
         }
     }
 }

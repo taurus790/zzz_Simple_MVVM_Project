@@ -8,11 +8,11 @@ namespace zzz_Simple_MVVM_Project.Models
 {
     class EmployeeService
     {
-        private static List<EmployeeM> Employees;
+        private static List<EmployeeM> MyEmployees;
 
         public EmployeeService()
         {
-            Employees = new List<EmployeeM>()
+            MyEmployees = new List<EmployeeM>()
             {
                 new EmployeeM { Id=101, Name="Ali", Age=21}
             };
@@ -20,7 +20,7 @@ namespace zzz_Simple_MVVM_Project.Models
 
         public List<EmployeeM> GetAll()
         {
-            return Employees;
+            return MyEmployees;
         }
 
         public bool Add(EmployeeM freshEmployee)
@@ -31,7 +31,7 @@ namespace zzz_Simple_MVVM_Project.Models
                 throw new ArgumentException("invalid age. Must be 18 < x < 65");
             }
 
-            Employees.Add(freshEmployee);
+            MyEmployees.Add(freshEmployee);
             return true;
         }
 
@@ -39,12 +39,12 @@ namespace zzz_Simple_MVVM_Project.Models
         {
             bool isUpdated = false;
 
-            for (int i = 0; i < Employees.Count; i++)
+            for (int i = 0; i < MyEmployees.Count; i++)
             {
-                if (Employees[i].Id == updEmployee.Id)
+                if (MyEmployees[i].Id == updEmployee.Id)
                 {
-                    Employees[i].Name = updEmployee.Name;
-                    Employees[i].Age = updEmployee.Age;
+                    MyEmployees[i].Name = updEmployee.Name;
+                    MyEmployees[i].Age = updEmployee.Age;
 
                     isUpdated = true;
                     break;
@@ -58,11 +58,11 @@ namespace zzz_Simple_MVVM_Project.Models
         {
             bool isDeleted = false;
 
-            for (int i = 0; i < Employees.Count; i++)
+            for (int i = 0; i < MyEmployees.Count; i++)
             {
-                if (Employees[i].Id == id)
+                if (MyEmployees[i].Id == id)
                 {
-                    Employees.RemoveAt(i);
+                    MyEmployees.RemoveAt(i);
 
                     isDeleted = true;
                     break;
@@ -74,7 +74,7 @@ namespace zzz_Simple_MVVM_Project.Models
     
         public EmployeeM Search(int id)
         {
-            return Employees.FirstOrDefault(e => e.Id == id);
+            return MyEmployees.FirstOrDefault(e => e.Id == id);
         }
     }
 }

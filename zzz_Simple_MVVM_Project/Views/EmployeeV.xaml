@@ -82,7 +82,21 @@
         <DataGrid Name="Employees"
                   AutoGenerateColumns="False" 
                   Grid.Row="6" Grid.Column="1" 
-                  Margin="5,8,6,8" Padding="3"/>
+                  Margin="5,8,6,8" Padding="3"
+                  ItemsSource="{Binding Path=MyEmployees}">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Employee Id" 
+                                    Width="auto" 
+                                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Name" 
+                                    Width="auto" 
+                                    Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Age" 
+                                    Width="auto" 
+                                    Binding="{Binding Path=Age}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </UserControl>
