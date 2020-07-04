@@ -10,6 +10,7 @@ namespace zzz_Simple_MVVM_Project.Models
 {
     public class EmployeeM : INotifyPropertyChanged
     {
+        #region InOtifyPropertyChanged implementation. 
         // Notifies everything that is bounded to a property. 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -22,9 +23,10 @@ namespace zzz_Simple_MVVM_Project.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
 
+        #region Properties. 
         private int id;
-
         public int Id
         {
             get { return id; }
@@ -32,7 +34,6 @@ namespace zzz_Simple_MVVM_Project.Models
         }
 
         private string name;
-
         public string Name
         {
             get { return name; }
@@ -40,12 +41,21 @@ namespace zzz_Simple_MVVM_Project.Models
         }
 
         private int age;
-
         public int Age
         {
             get { return age; }
             set { age = value; OnPropertyChanged("Age"); }
         }
+        #endregion
 
+        #region Constructor. 
+        // Constructor. 
+        public EmployeeM()
+        {
+            Id = 0;
+            Name = "John Smith";
+            Age = 21;
+        } 
+        #endregion
     }
 }

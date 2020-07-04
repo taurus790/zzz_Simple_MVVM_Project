@@ -28,15 +28,30 @@ namespace zzz_Simple_MVVM_Project.ViewModels
         }
         #endregion
 
+        #region Properties. 
         // Employee Service of this VM. 
         EmployeeService myEmployeeService;
 
+        // Selected employee. 
+        private EmployeeM selectedEmployee;
+        public EmployeeM SelectedEmployee
+        {
+            get { return selectedEmployee; }
+            set { selectedEmployee = value; OnPropertyChanged("SelectedEmployee"); }
+        }
+
+        #endregion
+
+        #region Constructor. 
         // Constructor. 
         public EmployeeVM()
         {
             myEmployeeService = new EmployeeService();
             LoadData();
+
+            SelectedEmployee = new EmployeeM();
         }
+        #endregion 
 
         #region Display operation.
         // List of employees. 
