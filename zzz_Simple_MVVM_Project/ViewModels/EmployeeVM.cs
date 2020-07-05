@@ -83,6 +83,14 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             // set { updateCommand = value; } // There is no need in setter in commands.
         }
 
+        // Command for deleting an employee.
+        private RelayCommand deleteCommand;
+        public RelayCommand DeleteCommand
+        {
+            get { return deleteCommand; }
+            // set { updateCommand = value; } // There is no need in setter in commands.
+        }
+
         #endregion
 
         #region Constructor. 
@@ -97,6 +105,7 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             addCommand = new RelayCommand(Add);
             searchCommand = new RelayCommand(Search);
             updateCommand = new RelayCommand(Update);
+            deleteCommand = new RelayCommand(Delete);
         }
         #endregion 
 
@@ -137,6 +146,7 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             try
             {
                 var foundEmployee = myEmployeeService.Search(SelectedEmployee.Id);
+
                 if (foundEmployee != null)
                 {
                     SelectedEmployee.Name = foundEmployee.Name;
@@ -163,6 +173,7 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             try
             {
                 var IsUpdated = myEmployeeService.Update(SelectedEmployee);
+
                 if (IsUpdated)
                 {
                     Message = "Employee updated.";
@@ -176,6 +187,30 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             catch (Exception ex)
             {
                 Message=ex.Message;
+            }
+        }
+        #endregion
+
+        #region Delete operation.
+        public void Delete()
+        {
+            try
+            {
+                var IsDeleted = myEmployeeService.Delete(SelectedEmployee.Id);
+
+                if (IsDeleted)
+                {
+                    Message = "Employee deleted.";
+                    LoadData();
+                }
+                else
+                {
+                    Message = "Delete operation failed.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
             }
         }
         #endregion

@@ -77,7 +77,8 @@
 
             <Button Name="Delete" 
                     Content="Delete" 
-                    Margin="5,8,6,8" Padding="3"/>
+                    Margin="5,8,6,8" Padding="3"
+                    Command="{Binding Path=DeleteCommand}"/>
 
         </StackPanel>
 

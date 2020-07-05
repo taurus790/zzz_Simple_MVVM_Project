@@ -8,8 +8,11 @@ namespace zzz_Simple_MVVM_Project.Models
 {
     class EmployeeService
     {
+        #region Properties. 
         private static List<EmployeeM> MyEmployees;
+        #endregion
 
+        #region Constructor. 
         public EmployeeService()
         {
             MyEmployees = new List<EmployeeM>()
@@ -17,7 +20,9 @@ namespace zzz_Simple_MVVM_Project.Models
                 new EmployeeM { Id=101, Name="Ali", Age=21}
             };
         }
+        #endregion
 
+        #region Methods. 
         public List<EmployeeM> GetAll()
         {
             return MyEmployees;
@@ -44,6 +49,7 @@ namespace zzz_Simple_MVVM_Project.Models
         public bool Update(EmployeeM updEmployee)
         {
             bool isUpdated = false;
+            bool isFound = false;
 
             // Age must be between 18 and 65. 
             if (updEmployee.Age < 18 || updEmployee.Age > 65)
@@ -59,8 +65,15 @@ namespace zzz_Simple_MVVM_Project.Models
                     MyEmployees[i].Age = updEmployee.Age;
 
                     isUpdated = true;
+                    isFound = true;
                     break;
                 }
+            }
+
+            // Error message in case the employee not found. 
+            if (!isFound)
+            {
+                throw new ArgumentException("Employee not found.");
             }
 
             return isUpdated;
@@ -83,5 +96,6 @@ namespace zzz_Simple_MVVM_Project.Models
 
             return isDeleted;
         }
+        #endregion
     }
 }
