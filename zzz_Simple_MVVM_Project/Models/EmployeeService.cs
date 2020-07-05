@@ -45,6 +45,12 @@ namespace zzz_Simple_MVVM_Project.Models
         {
             bool isUpdated = false;
 
+            // Age must be between 18 and 65. 
+            if (updEmployee.Age < 18 || updEmployee.Age > 65)
+            {
+                throw new ArgumentException("Invalid age. Must be between 18 and 65.");
+            }
+
             for (int i = 0; i < MyEmployees.Count; i++)
             {
                 if (MyEmployees[i].Id == updEmployee.Id)

@@ -49,6 +49,16 @@ namespace zzz_Simple_MVVM_Project.ViewModels
             set { selectedEmployee = value; OnPropertyChanged("SelectedEmployee"); }
         }
 
+        // Message to show to user.
+        private string message;
+        public string Message
+        {
+            get { return message; }
+            set { message = value; OnPropertyChanged("Message"); }
+        }
+        #endregion
+
+        #region Relay Commands.
         // Command for adding a new employee.
         private RelayCommand addCommand;
         public RelayCommand AddCommand
@@ -59,20 +69,18 @@ namespace zzz_Simple_MVVM_Project.ViewModels
 
         // Command for searching an employee by id. 
         private RelayCommand searchCommand;
-
         public RelayCommand SearchCommand
         {
             get { return searchCommand; }
             // set { searchCommand = value; } // There is no need in setter in commands. 
         }
 
-
-        // Message to show to user.
-        private string message;
-        public string Message
+        // Command for updating an employee.
+        private RelayCommand updateCommand;
+        public RelayCommand UpdateCommand
         {
-            get { return message; }
-            set { message = value; OnPropertyChanged("Message"); }
+            get { return updateCommand; }
+            // set { updateCommand = value; } // There is no need in setter in commands.
         }
 
         #endregion
@@ -88,6 +96,7 @@ namespace zzz_Simple_MVVM_Project.ViewModels
 
             addCommand = new RelayCommand(Add);
             searchCommand = new RelayCommand(Search);
+            updateCommand = new RelayCommand(Update);
         }
         #endregion 
 
@@ -140,11 +149,33 @@ namespace zzz_Simple_MVVM_Project.ViewModels
                     SelectedEmployee.Age = 0;
                     Message = "Employee not found.";
                 }
-
             }
             catch (Exception ex)
             {
                 Message = ex.Message;
+            }
+        }
+        #endregion
+
+        #region Update operation. 
+        public void Update()
+        {
+            try
+            {
+                var IsUpdated = myEmployeeService.Update(SelectedEmployee);
+                if (IsUpdated)
+                {
+                    Message = "Employee updated.";
+                    LoadData();
+                }
+                else
+                {
+                    Message = "Update operation failed.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Message=ex.Message;
             }
         }
         #endregion

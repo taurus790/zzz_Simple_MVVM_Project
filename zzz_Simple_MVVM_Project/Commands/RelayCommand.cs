@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Windows.Input; // Icommand.
+using System.Windows.Input; // ICommand.
 
 namespace zzz_Simple_MVVM_Project.Commands
 {

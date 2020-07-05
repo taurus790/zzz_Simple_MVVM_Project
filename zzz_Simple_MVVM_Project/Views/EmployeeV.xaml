@@ -72,7 +72,8 @@
 
             <Button Name="Update" 
                     Content="Update" 
-                    Margin="5,8,6,8" Padding="3"/>
+                    Margin="5,8,6,8" Padding="3"
+                    Command="{Binding Path=UpdateCommand}"/>
 
             <Button Name="Delete" 
                     Content="Delete" 
